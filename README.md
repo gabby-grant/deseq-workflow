@@ -80,14 +80,17 @@ If no tissue type is provided, the script will prompt you to enter one.
 ### Step 4: Differential Expression Analysis
 
 The `deseq_analysis.R` script performs differential expression analysis using DESeq2.
-Update line 28 with desired tissue `run_deseq <- function(counts, annotation, tissue_type = "uterus") `. Update script execution code portion of R code. Update line 134-142 with desired file paths
+Update line 28 with desired tissue. Update line 140-142 with desired file paths
 
 ```R
+  # set tissue type
+  run_deseq <- function(counts, annotation, tissue_type = "uterus")
   # Set your file paths here
   count_file <- "uterus-clean.csv"  # CHANGE THIS to your actual file name
   annotation_file <- "uterus.comparison.csv"  # CHANGE THIS to your actual file name
   output_file <- "uterus_deseq2_results.csv" #desired output file name
 ```
+
 In R:
 
 ```R
