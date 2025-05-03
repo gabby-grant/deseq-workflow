@@ -31,8 +31,26 @@ cd deseq-workflow
 No additional installation is needed. The R script includes a command to set up a custom library path for R packages.
 
 ## Usage
+### Step 1: Download Data
+This example will use cervix from Wang et al. 
+```bash
+wget -O cervix_GTEX.gz https://figshare.com/ndownloader/files/9150199
 
-### Step 1: Data Preprocessing
+wget -O cervix_TCGA.gz 
+https://figshare.com/ndownloader/files/9150202
+https://figshare.com/ndownloader/files/9150202
+```
+**Citation:**
+Wang, Q., Armenia, J., Zhang, C. et al. Unifying cancer and normal RNA sequencing data from different sources. Sci Data 5, 180061 (2018). https://doi.org/10.1038/sdata.2018.61
+### Step 2: Merge Data
+```shell
+module load anaconda3
+
+git clone https://github.com/feltus/mergegem.git
+
+python ./mergegem/mergegem.py cervix_GTEX cervix_TCGA cervix-gtex-tcga.txt
+```
+### Step 3: Data Preprocessing
 
 The `process_gtex_tcga.sh` script converts raw expression data into the proper format for DESeq2 analysis.
 
@@ -59,7 +77,7 @@ If no tissue type is provided, the script will prompt you to enter one.
 - `<tissue>-gtex-tcga-dash.labels.txt`: Labels with dashes replaced by underscores
 - `<tissue>-gtex-tcga.comparison.csv`: Comparison file for DESeq2 analysis
 
-### Step 2: Differential Expression Analysis
+### Step 4: Differential Expression Analysis
 
 The `deseq_analysis.R` script performs differential expression analysis using DESeq2.
 
